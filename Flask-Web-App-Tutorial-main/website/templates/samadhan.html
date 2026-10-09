@@ -1,0 +1,573 @@
+{% extends "base.html" %} {% block title %}samadhaan{% endblock %} {% block content %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MSME SAMADHAAN - Delayed Payment Monitoring System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            /* Changed background to gradient */
+            background: linear-gradient(to bottom right, #ffcdd2, #e1f5fe);
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: #2e8b40;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-logo {
+            width: 15%;
+            text-align: left;
+            padding-left: 20px;
+        }
+
+        .header-title {
+            width: 70%;
+            text-align: center;
+        }
+
+        .header-emblem {
+            width: 15%;
+            text-align: right;
+            padding-right: 20px;
+        }
+
+        .main-title {
+            margin-bottom: 5px;
+            font-size: 22px;
+        }
+
+        .sub-title {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background-color: #f0f0f0;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .nav-buttons {
+            display: flex;
+            margin-left: 20px;
+        }
+
+        .nav-button {
+            padding: 8px 15px;
+            margin: 0 5px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 3px;
+            color: white;
+        }
+
+        .blue-btn {
+            background-color: #2a6496;
+        }
+
+        .teal-btn {
+            background-color: #17a2b8;
+        }
+
+        .green-btn {
+            background-color: #5cb85c;
+        }
+
+        .orange-btn {
+            background-color: #f0ad4e;
+        }
+
+        .login-section {
+            margin-right: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .login-link {
+            text-decoration: none;
+            color: #555;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .home-icon {
+            font-size: 24px;
+            color: #f0ad4e;
+        }
+
+        /* Main Content Area */
+        .content {
+            width: 95%;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .content-title {
+            color: #555;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f0ad4e;
+        }
+
+        .msmed-title {
+            color: #337ab7;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+
+        .star-icon {
+            color: blue;
+            font-size: 20px;
+        }
+
+        .section-heading {
+            font-weight: bold;
+            color: #555;
+            margin: 15px 0 10px 0;
+        }
+
+        .text-content {
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        /* Statistics Cards */
+        .stats-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+
+        .stats-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .stats-card {
+            width: 32%;
+            padding: 20px;
+            border-radius: 5px;
+            color: white;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .light-blue {
+            background-color: #17a2b8;
+        }
+
+        .orange {
+            background-color: #fd7e14;
+        }
+
+        .yellow {
+            background-color: #e4a127;
+        }
+
+        .green {
+            background-color: #28a745;
+        }
+
+        .blue {
+            background-color: #0275d8;
+        }
+
+        .red {
+            background-color: #dc3545;
+        }
+
+        .stats-number {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .stats-text {
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .more-info {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .more-info::after {
+            content: "➜";
+            margin-left: 5px;
+        }
+
+        /* Tabs */
+        .tabs {
+            margin: 20px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .tab {
+            display: inline-block;
+            padding: 10px 15px;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            border-bottom: none;
+            border-radius: 5px 5px 0 0;
+            background-color: #f8f9fa;
+            margin-right: 5px;
+        }
+
+        .tab.active {
+            background-color: white;
+            border-bottom: 1px solid white;
+            margin-bottom: -1px;
+            color: #0275d8;
+        }
+
+        /* Process Flow */
+        .process-flow {
+            background-color: #36209e;
+            color: white;
+            padding: 20px;
+            margin-top: 20px;
+            position: relative;
+            min-height: 300px;
+        }
+
+        .sidebar {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 200px;
+            background: linear-gradient(to right, #196f33, #27a64a);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .sidebar-text {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            letter-spacing: 5px;
+            color: white;
+        }
+
+        .flow-steps {
+            margin-left: 220px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .step {
+            text-align: center;
+            margin: 10px;
+            width: 150px;
+        }
+
+        .step-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            font-weight: bold;
+            font-size: 20px;
+            color: #333;
+        }
+
+        .step-1 {
+            background-color: #ff5b9e;
+        }
+
+        .step-2 {
+            background-color: #17a2b8;
+        }
+
+        .step-3 {
+            background-color: #e83e8c;
+        }
+
+        .step-4 {
+            background-color: #fd7e14;
+        }
+
+        .step-5 {
+            background-color: #7fba00;
+        }
+
+        .step-6 {
+            background-color: #ff5959;
+        }
+
+        .step-7 {
+            background-color: #ffffff;
+        }
+
+        .step-8 {
+            background-color: #17a2b8;
+        }
+
+        .step-9 {
+            background-color: #ffffff;
+        }
+
+        .step-text {
+            margin-top: 15px;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        .flow-line {
+            height: 2px;
+            background-color: #ff5959;
+            flex-grow: 1;
+            margin: 0 -10px;
+            position: relative;
+            top: -25px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-logo">
+            <img src="https://i.pinimg.com/736x/c0/9e/9e/c09e9eb82692e8429e998851e11c8154.jpg" alt="MSME Logo" height="60">
+        </div>
+        <div class="header-title">
+            <h1 class="main-title">Ministry of Micro Small and Medium Enterprises</h1>
+            <p class="sub-title">(Government of India)</p>
+            <h2>MSME SAMADHAAN- Delayed Payment Monitoring System</h2>
+        </div>
+        <div class="header-emblem">
+            <img src="https://media.istockphoto.com/id/1262617201/vector/butterflies-flying-from-the-indian-tricolour-flag-hoisted-by-a-person-an-indian-independence.jpg?s=612x612&w=0&k=20&c=ZDljC2ZPQ7e3GcghutWvbUD4-ByFpARs2ryVG23Ofrg=" alt="Swachh Bharat Logo" height="60">
+        </div>
+    </div>
+
+    <div class="navbar">
+        <div class="nav-buttons">
+            <button class="nav-button blue-btn">English ▼</button>
+            <button class="nav-button teal-btn">Case Filing for Entrepreneur/MSE Units</button>
+            <button class="nav-button green-btn">Check Case Status</button>
+            <button class="nav-button orange-btn">Factsheets ▼</button>
+        </div>
+        <div class="login-section">
+            <a href="#" class="login-link">Officer Login</a>
+            <a href="#" class="home-icon">⌂</a>
+        </div>
+    </div>
+
+    <div class="content">
+        <h2 class="content-title">MSME SAMADHAAN- Delayed Payments to Micro and Small Enterprises under Micro, Small and Medium Enterprise Development (MSMED) Act, 2006</h2>
+        
+        <h3 class="msmed-title">The MSMED Act, 2006 (Dealing with Delayed Payment) <span class="star-icon">✸</span></h3>
+        
+        <h4 class="section-heading">Related Provision</h4>
+        <p class="text-content">The Micro, Small and Medium Enterprise Development (MSMED) Act, 2006 contains provisions of Delayed Payment to Micro and Small Enterprise (MSEs). (Section 15- 24). State Governments to establish Micro and Small Enterprise Facilitation Council (MSEFC) for settlement of disputes on getting references/filing on Delayed payments. (Section 20 and 21)</p>
+        
+        <h4 class="section-heading">Nature of assistance</h4>
+        <p class="text-content">MSEFC of the State after examining the case filed by MSE unit will issue directions to the buyer unit for payment of due amount along with interest as per the provisions under the MSMED Act 2006.</p>
+        
+        <h4 class="section-heading">Who can apply</h4>
+        <p class="text-content">Any Micro or small enterprise having valid Udyam Registration can apply.</p>
+        
+        <h4 class="section-heading">Salient Features</h4>
+        <p class="text-content">The buyer is liable to pay compound interest with the monthly rests to the supplier on the amount at the three times of the bank rate notified by RBI in case he does not make payment to the supplier for his supplies of goods or services within 45 days of the acceptance of the goods/service rendered. (Section 16)</p>
+        
+        <p class="text-content">State Governments to notify (i) Authority for filing Entrepreneur Memorandum (ii) Rules of MSEFC and (iii) Constitution of MSEFC.</p>
+        
+        <p class="text-content">All States/UTs have notified Authority for Filing Entrepreneur's Memorandum, have Notified rules of MSEFC and all the 37 States/UTs have constituted MSEFCs, as per provisions laid down under MSMED Act 2006.</p>
+        
+        <p class="text-content">Every reference made to MSEFC shall be decided within a period of ninety days from the date of making such a reference as per provisions laid in the Act.</p>
+        
+        <p class="text-content">If the Appellant (not being the supplier) wants to file an appeal, no application for setting aside any decree or award by the MSEFC shall be entertained by any court unless the appellant (not being supplier) has deposited with it, the 75% of the award amount. (Section 19)</p>
+        
+        <h4 class="section-heading">Implementation</h4>
+        <p class="text-content">The provisions under the Act are implemented by MSEFC chaired by Director of Industries of the State /UT having administrative control of the MSE units. State Government/UTs are requested to ensure that the MSE Facilitation Council hold meetings regularly and delayed payment cases are decided by the Councils within a period of 90 days as stipulated in the MSMED Act, 2006.</p>
+        
+        <h4 class="section-heading">MSME Samadhaan Portal - Ease of filing application under MSEFC, an Initiative from Ministry of MSME, Govt. of India</h4>
+        <p class="text-content">Ministry of MSME has taken an initiative for filing online application by the supplier MSE unit against the buyer of goods/services before the concerned MSEFC of his/her State/UT. These will be viewed by MSEFC Council for their actions. These will be also visible to Concerned Central Ministries, Departments, CPSEs, State Government, etc for pro-active actions.</p>
+        
+        <h3 class="content-title">Applications & Cases status of Micro and Small Units (MSEs)</h3>
+        
+        <div class="stats-row">
+            <div class="stats-card light-blue">
+                <div class="stats-number">2,30,123</div>
+                <div class="stats-text">Applications filed by MSEs</div>
+                <a href="#" class="more-info">More info</a>
+            </div>
+            
+            <div class="stats-card orange">
+                <div class="stats-number">21492</div>
+                <div class="stats-text">Applications Mutually Settled</div>
+                <a href="#" class="more-info">More info</a>
+            </div>
+            
+            <div class="stats-card yellow">
+                <div class="stats-number">56931</div>
+                <div class="stats-text">Applications yet to be viewed by MSEFC Council</div>
+                <a href="#" class="more-info">More info</a>
+            </div>
+        </div>
+        
+        <div class="stats-row">
+            <div class="stats-card light-blue">
+                <div class="stats-number">63545</div>
+                <div class="stats-text">Applications Rejected by MSEFC Council</div>
+                <a href="#" class="more-info">More info</a>
+            </div>
+            
+            <div class="stats-card green">
+                <div class="stats-number">46834</div>
+                <div class="stats-text">Cases Disposed by MSEFC Council</div>
+                <a href="#" class="more-info">More info</a>
+            </div>
+            
+            <div class="stats-card blue">
+                <div class="stats-number">41321</div>
+                <div class="stats-text">Cases Currently under Consideration by MSEFC</div>
+                <a href="#" class="more-info">More info</a>
+            </div>
+        </div>
+        
+        <div class="tabs">
+            <div class="tab active">Case Category 1</div>
+            <div class="tab">Case Category 2</div>
+            <div class="tab">Case Category 3</div>
+            <div class="tab">Total Cases</div>
+        </div>
+        
+        <h3 class="content-title">Cases filed in MSE Facilitation Council (MSEFC) after 30/10/2017 (i.e. after Launch of MSME-Samadhaan)</h3>
+        
+        <div class="stats-row">
+            <div class="stats-card light-blue">
+                <div class="stats-number">88155</div>
+                <div class="stats-text">Cases Filed</div>
+                <a href="#" class="more-info">More info</a>
+            </div>
+            
+            <div class="stats-card red">
+                <div class="stats-number">26318.31</div>
+                <div class="stats-text">Amount Payable (Rs. Crore)</div>
+                <a href="#" class="more-info">More info</a>
+            </div>
+            
+            <div class="stats-card yellow">
+                <div class="stats-number">46834</div>
+                <div class="stats-text">Cases Disposed</div>
+                <a href="#" class="more-info">More info</a>
+            </div>
+            
+            <div class="stats-card green">
+                <div class="stats-number">7626.19</div>
+                <div class="stats-text">Amount Involved in Disposed Cases (Rs. Crore)</div>
+                <a href="#" class="more-info">More info</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="process-flow">
+        <div class="sidebar">
+            <span class="sidebar-text">MSME SAMADHAAN</span>
+        </div>
+        
+        <div class="flow-steps">
+            <div class="step">
+                <div class="step-circle step-1">1</div>
+                <div class="step-text">Online Intimation Will Be Send to both Entrepreneur and Respondent By Email</div>
+            </div>
+            
+            <div class="flow-line"></div>
+            
+            <div class="step">
+                <div class="step-circle step-2">2</div>
+                <div class="step-text">Entrepreneur filed the application online to respective Council after 15 days Council will take action on application.</div>
+            </div>
+            
+            <div class="flow-line"></div>
+            
+            <div class="step">
+                <div class="step-circle step-3">3</div>
+                <div class="step-text">Council can approve the Entrepreneur application and convert in to case</div>
+            </div>
+            
+            <div class="flow-line"></div>
+            
+            <div class="step">
+                <div class="step-circle step-4">4</div>
+                <div class="step-text">Mutual Settlement option for Entrepreneur (MSEs can Mutual Settled the application before Convert In to Cases)</div>
+            </div>
+            
+            <div class="flow-line"></div>
+            
+            <div class="step">
+                <div class="step-circle step-5">5</div>
+                <div class="step-text">SMS and Email send to Entrepreneur and respondent if application is converted into cases.</div>
+            </div>
+            
+            <div class="flow-line"></div>
+            
+            <div class="step">
+                <div class="step-circle step-6">6</div>
+                <div class="step-text">Council can reject the Entrepreneur application.</div>
+            </div>
+            
+            <div class="flow-line"></div>
+            
+            <div class="step">
+                <div class="step-circle step-7">7</div>
+                <div class="step-text">Council will update Case hearing Status or hearing Date</div>
+            </div>
+            
+            <div class="flow-line"></div>
+            
+            <div class="step">
+                <div class="step-circle step-8">8</div>
+                <div class="step-text">Council can enter the case detail in online portal if received offline application</div>
+            </div>
+            
+            <div class="flow-line"></div>
+            
+            <div class="step">
+                <div class="step-circle step-9">9</div>
+                <div class="step-text">Entrepreneur can view the application/case status by Udyam Registration / Udyog Aadhaar Number or Application No. / Case No.</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

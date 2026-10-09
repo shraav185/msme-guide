@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block title %}Sign Up{% endblock %}
+{% block content %}
+<style>
+  .custom-card {
+    background-color: #fff;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .custom-header {
+    background-color: #1e88e5;
+    /* Blue header color from the image */
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+
+  .custom-body {
+    background-color: #fff;
+    /* White form background */
+  }
+
+  .custom-button {
+    background-color: #1e88e5;
+    /* Blue button color */
+    border-color: #1e88e5;
+  }
+
+  .custom-button:hover {
+    background-color: #1565c0;
+    /* Slightly darker blue on hover */
+    border-color: #1565c0;
+  }
+
+  .form-control {
+    background-color: #e3f2fd;
+    /* Light blue input background */
+    border-color: #e3f2fd;
+    color: #000;
+  }
+
+  .form-control::placeholder {
+    color: #90a4ae;
+    /* Placeholder text color */
+  }
+
+  .page-background {
+    background-image: url('https://media.istockphoto.com/id/1297933144/vector/vector-illustration-of-indian-tricolor-flag-background.jpg?s=612x612&w=0&k=20&c=tCd-ZdLMNHw_KAMZTX9zStqEDdWzXlS6FYrvjrZIswk='); /* Replace with your image URL */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh; /* Ensures full coverage */
+    width: 100%;
+  }
+</style>
+<div class="page-background">
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-5">
+        <div class="custom-card shadow-lg">
+          <div class="custom-header text-white text-center p-3">
+            <h3 class="my-2">Create Your Account</h3>
+          </div>
+          <div class="custom-body p-4">
+            <form method="POST">
+              <div class="form-group mb-3">
+                <label for="email" class="form-label fw-bold">Email Address</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" required />
+              </div>
+              <div class="form-group mb-3">
+                <label for="first_name" class="form-label fw-bold">First Name</label>
+                <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter First Name"
+                  required />
+              </div>
+              <div class="form-group mb-3">
+                <label for="password" class="form-label fw-bold">Password</label>
+                <input type="password" class="form-control" id="password" name="password1" placeholder="Enter Password"
+                  required />
+              </div>
+              <div class="form-group mb-4">
+                <label for="password_confirm" class="form-label fw-bold">Password (Confirm)</label>
+                <input type="password" class="form-control" id="password_confirm" name="password2"
+                  placeholder="Confirm Password" required />
+              </div>
+              <div class="d-grid mb-3">
+                <button type="submit" class="btn custom-button text-white btn-lg">Sign Up</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,224 @@
+{% extends "base.html" %}
+
+{% block title %}What's MSME - MSME Government Portal{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+        font-family: 'Poppins', sans-serif;
+        color: #fff;
+    }
+
+    .header {
+        position: sticky;
+        top: 0;
+        background: linear-gradient(90deg, #1a2a6c, #ff9933);
+        padding: 1rem;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+        text-align: center;
+        border-radius: 0 0 15px 15px;
+    }
+
+    .header h1 {
+        color: #ffcc00;
+        text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+    }
+
+    .msme-content {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 2rem;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        animation: fadeIn 1s ease-in;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .msme-content h3 {
+        color: #ffcc00;
+        font-weight: 600;
+        text-shadow: 0 0 5px rgba(255, 204, 0, 0.3);
+    }
+
+    .msme-content p {
+        color: #fff;
+    }
+
+    .table {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .table thead th {
+        background: linear-gradient(45deg, #1a2a6c, #ff9933);
+        color: #fff;
+        border: none;
+        padding: 15px;
+    }
+
+    .table tbody tr {
+        background: rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .table tbody tr:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: scale(1.01);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .table td {
+        color: #fff;
+        border: none;
+        padding: 15px;
+    }
+
+    .card {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 1rem;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    .nav-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .nav-button {
+        padding: 0.8rem 2rem;
+        background: linear-gradient(45deg, #ff9933, #fdbb2d);
+        color: #fff;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(255, 153, 51, 0.4);
+    }
+
+    .nav-button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(255, 153, 51, 0.6);
+    }
+
+    footer {
+        background: linear-gradient(90deg, #1a2a6c, #b21f1f);
+        padding: 1.5rem;
+        text-align: center;
+        box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.3);
+        margin-top: 2rem;
+    }
+</style>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="header">
+                <h1>What's MSME?</h1>
+            </div>
+            
+            <div class="msme-content">
+                <h3>Definition of Micro, Small and Medium Enterprises</h3>
+                <p>In accordance with off with the Micro, Small and Medium Enterprises Development (MSMED) Act, 2006 and subsequent revisions, MSMEs are classified as follows:</p>
+                
+                <div class="table-responsive mt-4">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Classification</th>
+                                <th>Investment in Plant & Machinery/Equipment</th>
+                                <th>Annual Turnover</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Micro Enterprise</strong></td>
+                                <td>Investment does not exceed Rs. 1 crore</td>
+                                <td>Turnover does not exceed Rs. 5 crore</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Small Enterprise</strong></td>
+                                <td>Investment does not exceed Rs. 10 crore</td>
+                                <td>Turnover does not exceed Rs. 50 crore</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Medium Enterprise</strong></td>
+                                <td>Investment does not exceed Rs. 50 crore</td>
+                                <td>Turnover does not exceed Rs. 250 crore</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <h3>Importance of MSMEs in Indian Economy</h3>
+                <p>MSMEs play a crucial role in the growth of the Indian economy, contributing significantly to:</p>
+                
+                <div class="row" style="margin-top: 20px;">
+                    <div class="col-md-4 mb-3">
+                        <div class="card">Manufacturing output</div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card">Employment generation</div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card">Exports</div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card">GDP contribution</div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card">Inclusive growth and development</div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card">Regional balance</div>
+                    </div>
+                </div>
+                
+                <h3>Registration of MSMEs</h3>
+                <p>The registration of MSMEs is now done through the Udyam Registration portal. It is a simple, paperless, and free registration process that provides enterprises with a permanent identification number.</p>
+                
+                <div style="text-align: center; margin-top: 25px;">
+                    <button class="nav-button" onclick="window.location.href='https://udyamregistration.gov.in/'">
+                        <i class="fa fa-external-link" style="margin-right: 8px;"></i>Go to Udyam Registration Portal
+                    </button>
+                </div>
+            </div>
+            
+            <div class="nav-buttons">
+                <button class="nav-button" onclick="window.location.href='/'">Back to Home</button>
+                <button class="nav-button" onclick="window.location.href='/schemes'">View MSME Schemes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>© 2025 MSME Government Portal. All Rights Reserved.</p>
+</footer>
+
+<script>
+    // Hover effects handled via CSS now
+</script>
+{% endblock %}

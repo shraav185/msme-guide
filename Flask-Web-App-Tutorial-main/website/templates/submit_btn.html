@@ -1,0 +1,10 @@
+{% extends "base.html" %} {% block title %}Registration_Success{% endblock %} {% block content %}
+
+<section class="card p-4 mx-auto" style="max-width: 42rem">
+    <h1 class="h3 text-success">Business registered successfully</h1>
+    <p class="mb-2">Your registration has been saved for <strong>{{ business.business_name }}</strong>.</p>
+    <p class="text-muted">Registration number: {{ business.id }}</p>
+    <a class="btn btn-primary" href="{{ url_for('views.home') }}">Back to MSME Guide</a>
+</section>
+
+{% endblock %}

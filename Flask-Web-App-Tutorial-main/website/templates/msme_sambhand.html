@@ -1,0 +1,390 @@
+{% extends "base.html" %}
+{% block title %}msme_sambandh{% endblock %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MSME SAMBANDH - Public Procurement Policy Monitoring Portal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #ffb6c1, #add8e6, #e6f3ff); /* Light pink to lightest blue gradient */
+            min-height: 100vh;
+            background-attachment: fixed; /* Keeps gradient static while scrolling */
+        }
+        
+        /* Header styles */
+        header {
+            background: linear-gradient(to right, #ffb6c1, #87ceeb); /* Light pink to light blue */
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Added shadow for depth */
+        }
+        
+        .menu-button {
+            color: white;
+            font-weight: bold;
+        }
+        
+        .logo-text {
+            font-size: 20px;
+            font-weight: bold;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); /* Subtle shadow for contrast */
+        }
+        
+        .language-select {
+            padding: 3px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid #fff;
+            color: #1a2a6c;
+            border-radius: 5px;
+        }
+        
+        /* Hero section */
+        .hero {
+            position: relative;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.1); /* Glassmorphism effect */
+            overflow: hidden;
+            backdrop-filter: blur(5px); /* Optional: Adds a blur effect */
+        }
+        
+        .hero-images {
+            width: 100%;
+            height: 100%;
+            display: flex;
+        }
+        
+        .hero-images img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .hero-title {
+            font-size: 50px;
+            font-weight: bold;
+            color: #ff69b4; /* Hot pink for vibrancy */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+        }
+        
+        .hero-subtitle {
+            font-size: 24px;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            margin-top: 150px;
+        }
+        
+        .atmanirbhar-badge {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(to bottom, #ff99cc, #add8e6); /* Pink to light blue */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px;
+            color: #1a2a6c;
+            text-align: center;
+            font-weight: bold;
+            border: 1px solid #ffcc00; /* Yellow border retained for contrast */
+        }
+        
+        /* Stats section */
+        .stats-container {
+            padding: 20px;
+        }
+        
+        .fiscal-year {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #1a2a6c; /* Dark blue for contrast */
+        }
+        
+        .year-select {
+            padding: 5px 10px;
+            margin-left: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid #87ceeb;
+            border-radius: 5px;
+            color: #1a2a6c;
+        }
+        
+        .stats-cards {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-card {
+            flex: 1;
+            min-width: 220px;
+            height: 250px;
+            color: white;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px; /* Rounded corners for a modern look */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Added shadow */
+            transition: transform 0.3s ease; /* Smooth hover effect */
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px); /* Lift on hover */
+        }
+        
+        .card-icon {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+        
+        .card-amount {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .card-unit {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .card-details {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        
+        .card-yellow {
+            background: linear-gradient(to bottom, #ffcc99, #ffb6c1); /* Light orange to light pink */
+        }
+        
+        .card-orange {
+            background: linear-gradient(to bottom, #ff99cc, #ffb6c1); /* Pink shades */
+        }
+        
+        .card-blue {
+            background: linear-gradient(to bottom, #87ceeb, #add8e6); /* Light blue shades */
+        }
+        
+        .card-purple {
+            background: linear-gradient(to bottom, #dda0dd, #e6f3ff); /* Plum to lightest blue */
+        }
+        
+        .card-triangle {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 50px 50px 0;
+        }
+        
+        .yellow-triangle {
+            border-color: transparent #ffcc00 transparent transparent; /* Retained yellow */
+        }
+        
+        .orange-triangle {
+            border-color: transparent #ff69b4 transparent transparent; /* Hot pink */
+        }
+        
+        .blue-triangle {
+            border-color: transparent #87ceeb transparent transparent; /* Light blue */
+        }
+        
+        .purple-triangle {
+            border-color: transparent #dda0dd transparent transparent; /* Plum */
+        }
+        
+        .print-button {
+            display: block;
+            margin-left: auto;
+            padding: 8px 15px;
+            background: linear-gradient(to right, #ff99cc, #add8e6); /* Pink to light blue */
+            color: #1a2a6c;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: transform 0.3s ease;
+        }
+        
+        .print-button:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Footer section */
+        .footer-info {
+            margin-top: 40px;
+            padding: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            color: #1a2a6c; /* Dark blue for contrast */
+            line-height: 1.6;
+            background: rgba(255, 255, 255, 0.1); /* Glassmorphism effect */
+            border-radius: 10px;
+        }
+        
+        .footer-info a {
+            color: #ff69b4; /* Hot pink for links */
+            text-decoration: none;
+        }
+        
+        .footer-info a:hover {
+            color: #87ceeb; /* Light blue on hover */
+        }
+        
+        .footer-links {
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .footer-links img {
+            height: 60px;
+            margin: 0 20px;
+            border-radius: 5px; /* Rounded corners */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="menu-button">MENU ≡</div>
+        <div class="logo-text">MSME SAMBANDH</div>
+        <select class="language-select">
+            <option>English</option>
+            <option>Hindi</option>
+        </select>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-images">
+            <img src="https://assets.thehansindia.com/h-upload/2021/02/23/1033241-msme.webp" alt="Industrial infrastructure">
+        </div>
+        <div class="hero-overlay">
+            <div class="hero-title">MSME SAMBANDH</div>
+            <div class="hero-subtitle">Public Procurement Policy Monitoring Portal</div>
+        </div>
+        <div class="atmanirbhar-badge">
+            <div>Atmanirbhar</div>
+            <div>Bharat</div>
+        </div>
+    </section>
+    
+    <!-- Stats Section -->
+    <section class="stats-container">
+        <div class="fiscal-year">
+            Procurement From Central Ministries / Departments / CPSEs For FY 2024-25
+            <select class="year-select">
+                <option>2024-25</option>
+            </select>
+        </div>
+        
+        <div class="stats-cards">
+            <!-- Total Procurement Card -->
+            <div class="stat-card card-yellow">
+                <div class="card-triangle yellow-triangle"></div>
+                <div class="card-icon">≡</div>
+                <div class="card-amount">181,722.05</div>
+                <div class="card-unit">(₹ in Crore)</div>
+                <div class="card-details">
+                    Procurement as on date<br>
+                    138 CPSEs Reported, 0 Ministries<br>
+                    Reported, 0 Departments Reported
+                </div>
+            </div>
+            
+            <!-- MSE Procurement Card -->
+            <div class="stat-card card-orange">
+                <div class="card-triangle orange-triangle"></div>
+                <div class="card-icon">☐</div>
+                <div class="card-amount">77,309.07</div>
+                <div class="card-unit">(₹ in Crore)</div>
+                <div class="card-details">
+                    42.54 %<br>
+                    Procurement from MSEs (Including<br>
+                    SC/ST Owned)<br>
+
+                </div>
+            </div>
+            
+            <!-- SC/ST Procurement Card -->
+            <div class="stat-card card-blue">
+                <div class="card-triangle blue-triangle"></div>
+                <div class="card-icon">≡</div>
+                <div class="card-amount">2,721.35</div>
+                <div class="card-unit">(₹ in Crore)</div>
+                <div class="card-details">
+                    1.50 %<br>
+                    Procurement from SC/ST<br>
+                    Owned MSEs<br>
+                </div>
+            </div>
+            
+            <!-- Women MSE Procurement Card -->
+            <div class="stat-card card-purple">
+                <div class="card-triangle purple-triangle"></div>
+                <div class="card-icon">♀</div>
+                <div class="card-amount">4,453.40</div>
+                <div class="card-unit">(₹ in Crore)</div>
+                <div class="card-details">
+                    2.45 %<br>
+                    Procurement from Women MSEs<br>
+                    21723 Women MSEs Benefited
+                </div>
+            </div>
+        </div>
+        
+    
+    </section>
+    
+    <!-- Footer Section -->
+    <section class="footer-info">
+        <p>The National Single Window System is a one stop digital portal for Businesses to identify, apply and track business approvals related to Central/States Government for Ease of Doing Business in India under the aegis of DPIIT, Ministry of Commerce and Industry. For more details the NSWS portal may be visited by using the URL <a href="https://www.nsws.gov.in">https://www.nsws.gov.in</a>. The mail id is: contactus-nsws@investindia.org.in</p>
+        
+        <div class="footer-links">
+            <img src="https://www.shutterstock.com/image-vector/parliament-india-260nw-1273173478.jpg" alt="Ministry of MSME">
+            <img src="https://blog.tatanexarc.com/wp-content/uploads/2024/03/MSME-loan-scheme-1080x675.jpg" alt="Development Commissioner MSME">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTclY1KAEvZiU81eeC49Ygm1tg4K1eq0mSOEQ&s" alt="Digital India">
+            <img src="https://www.shutterstock.com/image-photo/small-flags-india-on-abstract-260nw-2260934997.jpg" alt="Make in India">
+        </div>
+    </section>
+</body>
+</html>
+
+{% endblock %}

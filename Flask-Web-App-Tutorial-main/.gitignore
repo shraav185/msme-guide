@@ -1,0 +1,8 @@
+.vscode
+website/__pycache__
+website/database.db
+__pycache__/
+*.py[cod]
+.venv/
+.env
+instance/*.db

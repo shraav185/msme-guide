@@ -1,0 +1,402 @@
+{% extends "base.html" %} {% block title %}udyam_registration{% endblock %} {% block content %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Udyam Registration Portal</title>
+    <style>
+        :root {
+            --primary-color: #1a237e;
+            --secondary-color: #f57c00;
+            --text-color: #ffffff;
+            --box-bg: #ffffff;
+            --box-text: #000000;
+        }
+       
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ffcdd2 0%, #e1f5fe 100%);
+        }
+       
+        .header {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            padding: 15px 0;
+            border-bottom: 2px solid #0d1757;
+        }
+       
+        .header-content {
+            display: flex;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+       
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+       
+        .logo img {
+            height: 60px;
+            margin-right: 15px;
+        }
+       
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+       
+        .logo-text h1 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 500;
+        }
+       
+        .logo-text h2 {
+            margin: 0;
+            font-size: 14px;
+            font-weight: 400;
+        }
+       
+        .nav {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+        }
+       
+        .nav-item {
+            margin-left: 15px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+       
+        .nav-item:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+       
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+       
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+       
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+        }
+       
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+       
+        .section-subtitle {
+            font-size: 20px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+       
+        .registration-process {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+       
+        .process-text {
+            flex: 1;
+            padding-right: 30px;
+        }
+       
+        .process-image {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+       
+        .growth-image {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+        }
+       
+        .button {
+            display: block;
+            width: 100%;
+            padding: 12px 20px;
+            margin: 15px 0;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            border: 2px solid var(--text-color);
+            border-radius: 4px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+       
+        .button:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+       
+        .stats-container {
+            margin-top: 40px;
+        }
+       
+        .stats-row {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+       
+        .stat-box {
+            flex: 1;
+            background-color: var(--box-bg);
+            color: var(--box-text);
+            border-radius: 4px;
+            padding: 15px;
+            margin: 10px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+       
+        .stat-title {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+       
+        .stat-value {
+            font-size: 20px;
+            font-weight: 600;
+        }
+       
+        .slogan {
+            margin-top: 10px;
+            font-size: 22px;
+            text-align: center;
+            font-weight: 500;
+        }
+       
+        .language-selector {
+            margin-left: 15px;
+            padding: 6px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            background-color: white;
+        }
+       
+        .footer {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+       
+        .factsheet-data {
+            margin-top: 30px;
+        }
+       
+        .factsheet-subtitle {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+       
+        @media (max-width: 768px) {
+            .registration-process {
+                flex-direction: column;
+            }
+           
+            .process-text {
+                padding-right: 0;
+                margin-bottom: 20px;
+            }
+           
+            .stats-row {
+                flex-direction: column;
+            }
+           
+            .process-image {
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="https://live.staticflickr.com/2728/4063493072_64e69ce156_c.jpg" alt="MSME Logo">
+                <div class="logo-text">
+                    <h1>सूक्ष्म, लघु और मध्यम उद्यम मंत्रालय</h1>
+                    <h2>Ministry of Micro, Small & Medium Enterprises</h2>
+                </div>
+            </div>
+            <div class="nav">
+                <a href="#" class="nav-item">Home</a>
+                <a href="#" class="nav-item">NIC Code</a>
+                <div class="dropdown">
+                    <a href="#" class="nav-item">Useful Documents</a>
+                </div>
+                <div class="dropdown">
+                    <a href="#" class="nav-item">Print / Verify</a>
+                </div>
+                <div class="dropdown">
+                    <a href="#" class="nav-item">Update Details</a>
+                </div>
+                <div class="dropdown">
+                    <a href="#" class="nav-item">Login</a>
+                </div>
+                <select class="language-selector">
+                    <option>English</option>
+                    <option>Hindi</option>
+                </select>
+            </div>
+        </div>
+    </div>
+   
+    <div class="main-content">
+        <!-- Registration Process Section (Image 2) -->
+        <h2 class="section-title">This is the only Government Portal for MSME (Udyam) Registration</h2>
+       
+        <div class="registration-process">
+            <div class="process-text">
+                <h3>Entrepreneurs!</h3>
+                <p>Just take few simple steps to make an Enterprise of your dreams...</p>
+               
+                <h2 class="section-subtitle">MSME / Udyam Registration Process</h2>
+               
+                <p>Welcome to Register here</p>
+                <a href="#" class="button">For New Entrepreneurs who are not Registered yet as MSME or those with EM-II</a>
+               
+                <p>You can Migrate to Udyam (Re-Register) here</p>
+                <a href="#" class="button">For those already having registration as UAM</a>
+                <a href="#" class="button">For those already having registration as UAM through Assisted filing</a>
+               
+                <p>For Udyam Assist Platform (UAP) Click Here</p>
+                <a href="#" class="button">For Informal Micro Enterprises</a>
+            </div>
+           
+            <div class="process-image">
+                <!-- Using the provided image instead of the stairs graphic -->
+                <img src="https://media.licdn.com/dms/image/v2/D4E12AQEsdlKq9HBkQw/article-cover_image-shrink_600_2000/article-cover_image-shrink_600_2000/0/1714981369974?e=2147483647&v=beta&t=8s-ksoL36TvA3QGk3dLo4Z5HquZWMkLafITKzlk5Rgg" alt="MSME Growth Steps" class="growth-image">
+                <div class="slogan">Our Small Hands to Make you LARGE</div>
+            </div>
+        </div>
+       
+        <!-- Factsheet Section (Image 1) -->
+        <div class="factsheet-data">
+            <h2 class="section-title">Factsheet of MSME (Udyam) Registration Including Udyam Assist Platform (UAP)</h2>
+            <p>Facts Dated:- 03/04/2025 12:00:4 AM</p>
+           
+            <div class="stats-container">
+                <div class="stats-row">
+                    <div class="stat-box">
+                        <div class="stat-title">Total Registration</div>
+                        <div class="stat-value">6,21,74,167</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-title">Total Classified</div>
+                        <div class="stat-value">6,21,20,153</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-title">Micro</div>
+                        <div class="stat-value">6,16,14,900</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-title">Small</div>
+                        <div class="stat-value">4,70,499</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-title">Medium</div>
+                        <div class="stat-value">34,754</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-title">Total Employment</div>
+                        <div class="stat-value">26,56,04,157</div>
+                    </div>
+                </div>
+            </div>
+           
+            <h3 class="factsheet-subtitle">Factsheet of MSME (Udyam) Registration</h3>
+            <div class="stats-container">
+                <div class="stats-row">
+                    <div class="stat-box">
+                        <div class="stat-title">Total Registration</div>
+                        <div class="stat-value">3,55,99,965</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-title">Total Classified</div>
+                        <div class="stat-value">3,55,45,951</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-title">Micro</div>
+                        <div class="stat-value">3,50,40,698</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-title">Small</div>
+                        <div class="stat-value">4,70,499</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-title">Medium</div>
+                        <div class="stat-value">34,754</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-title">Total Employment</div>
+                        <div class="stat-value">23,35,98,250</div>
+                    </div>
+                </div>
+            </div>
+           
+            <h3 class="factsheet-subtitle">Factsheet of Udyam Assist Platform (UAP)</h3>
+            <div class="stats-container">
+                <div class="stats-row">
+                    <div class="stat-box">
+                        <div class="stat-title">Total Registration & Classified</div>
+                        <div class="stat-value">2,65,74,202</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-title">Micro</div>
+                        <div class="stat-value">2,65,74,202</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-title">Total Employment</div>
+                        <div class="stat-value">3,20,05,907</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <div class="footer">
+        <h2>UDYAM REGISTRATION PORTAL</h2>
+    </div>
+</body>
+</html>
+
+{% endblock %}

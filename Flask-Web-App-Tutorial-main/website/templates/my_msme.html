@@ -1,0 +1,385 @@
+{% extends "base.html" %}
+{% block title %}My_msme{% endblock %}
+{% block content %}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyMSME - Empowering Growth</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ffe6f0, #e6f2ff); /* Light pink to lightest blue */
+            color: #fff; /* White text */
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(to right, #1a2a6c, #ff9933); /* Header gradient */
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            border-radius: 0 0 15px 15px;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff; /* White text */
+            text-shadow: 0 0 10px #ffcc00; /* Bright yellow shadow */
+        }
+
+        nav {
+            background: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 1.5rem;
+        }
+
+        nav ul li a {
+            color: #fff; /* White text */
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: #ffcc00; /* Bright yellow */
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        nav ul li a:hover {
+            color: #ffcc00; /* Bright yellow */
+            transform: scale(1.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            text-shadow: 0 0 15px #ffcc00; /* Bright yellow shadow */
+            margin-bottom: 1rem;
+        }
+
+        .cta-btn {
+            padding: 1rem 3rem;
+            background: linear-gradient(to right, #ff9933, #fdbb2d); /* Button gradient */
+            color: #fff; /* White text */
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 0 15px rgba(253, 187, 45, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px #ffcc00; /* Bright yellow shadow */
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1); /* Glassmorphism */
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(255, 204, 0, 0.3); /* Bright yellow shadow */
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            color: #ffcc00; /* Bright yellow */
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            color: #fff; /* White text */
+            font-size: 0.9rem;
+        }
+
+        .schemes-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .schemes-list li {
+            margin: 0.5rem 0;
+            color: #fff; /* White text */
+        }
+
+        /* Forms */
+        .form-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.1); /* Glassmorphism */
+            padding: 2rem;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-container h3 {
+            color: #ffcc00; /* Bright yellow */
+            margin-bottom: 1rem;
+        }
+
+        .form-container label {
+            display: block;
+            margin: 0.5rem 0;
+            color: #fff; /* White text */
+        }
+
+        .form-container input, .form-container textarea {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ffcc00; /* Bright yellow */
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff; /* White text */
+        }
+
+        .form-container button {
+            background: linear-gradient(to right, #ff9933, #fdbb2d); /* Button gradient */
+            color: #e9cd32; /* White text */
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .form-container button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px #ffcc00; /* Bright yellow shadow */
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #ffcc00; /* Bright yellow */
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(to right, #1a2a6c, #b21f1f); /* Footer gradient */
+            color: #ffffff; /* White text */
+            padding: 1.5rem;
+            text-align: center;
+            font-size: 0.9rem;
+            border-radius: 15px 15px 0 0;
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+            }
+
+            nav {
+                margin-top: 1rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">MyMSME</div>
+            <nav>
+                <ul>
+                    <li><a href="#schemes">Schemes</a></li>
+                    <li><a href="#apply">Apply</a></li>
+                    <li><a href="#grievance">Grievance</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Empower Your Future</h1>
+            <div class="logo">
+                <img src="https://5.imimg.com/data5/SELLER/Default/2024/9/453784591/JC/YJ/VT/188877046/msme-registration-service-in-avantika-500x500.png" alt="MSME Logo">
+            </div>
+        </div>
+    </section>
+
+    <section class="main-content">
+        <div class="card" id="schemes-card">
+            <h2>Schemes</h2>
+            <ul class="schemes-list">
+                <li>PMEGP - Job Creation</li>
+                <li>MUDRA - Micro Funding</li>
+            </ul>
+        </div>
+        <div class="card" id="apply-card">
+            <h2>Apply</h2>
+            <p>Start your journey now.</p>
+        </div>
+        <div class="card" id="grievance-card">
+            <h2>Grievance</h2>
+            <p>Resolve issues fast.</p>
+        </div>
+    </section>
+
+    <!-- Apply Form -->
+    <div class="form-overlay" id="apply-form">
+        <div class="form-container">
+            <span class="close-btn" onclick="closeForm('apply-form')">×</span>
+            <h3>Apply for a Scheme</h3>
+            <form>
+                <label for="name">Full Name</label>
+                <input type="text" id="name" required>
+                <label for="business">Business Name</label>
+                <input type="text" id="business" required>
+                <label for="scheme">Select Scheme</label>
+                <input type="text" id="scheme" required>
+                <label for="contact">Contact Number</label>
+                <input type="tel" id="contact" required>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Grievance Form -->
+    <div class="form-overlay" id="grievance-form">
+        <div class="form-container">
+            <span class="close-btn" onclick="closeForm('grievance-form')">×</span>
+            <h3>File a Grievance</h3>
+            <form>
+                <label for="g-name">Full Name</label>
+                <input type="text" id="g-name" required>
+                <label for="g-contact">Contact Number</label>
+                <input type="tel" id="g-contact" required>
+                <label for="issue">Describe Your Issue</label>
+                <textarea id="issue" rows="4" required></textarea>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Ministry of MSME, Government of India</p>
+    </footer>
+
+    <script>
+        document.getElementById('apply-card').addEventListener('click', () => {
+            document.getElementById('apply-form').style.display = 'flex';
+        });
+
+        document.getElementById('grievance-card').addEventListener('click', () => {
+            document.getElementById('grievance-form').style.display = 'flex';
+        });
+
+        function closeForm(formId) {
+            document.getElementById(formId).style.display = 'none';
+        }
+    </script>
+</body>
+</html>
+{% endblock %}

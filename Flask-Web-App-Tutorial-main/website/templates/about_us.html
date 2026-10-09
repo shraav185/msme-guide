@@ -1,0 +1,188 @@
+{% extends "base.html" %}
+
+{% block title %}About Us - MSME Government Portal{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+        font-family: 'Poppins', sans-serif;
+        color: #fff;
+    }
+
+    .header {
+        position: sticky;
+        top: 0;
+        background: linear-gradient(90deg, #1a2a6c, #ff9933);
+        padding: 1rem;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+        text-align: center;
+        border-radius: 0 0 15px 15px;
+    }
+
+    .header h1 {
+        color: #ffcc00;
+        text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+    }
+
+    .about-content {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 15px;
+        padding: 2rem;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        animation: fadeIn 1s ease-in;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .about-content h3 {
+        color: #ffcc00;
+        font-weight: 600;
+        text-shadow: 0 0 5px rgba(255, 204, 0, 0.3);
+    }
+
+    .about-content p {
+        color: #fff;
+    }
+
+    .mission-item {
+        background: rgba(255, 255, 255, 0.05);
+        margin-bottom: 10px;
+        padding: 12px 15px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        color: #fff;
+        border-left: 4px solid #ffcc00;
+    }
+
+    .mission-item:hover {
+        background: rgba(255, 255, 255, 0.15);
+        transform: scale(1.02);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .card {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 1rem;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    .nav-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .nav-button {
+        padding: 0.8rem 2rem;
+        background: linear-gradient(45deg, #ff9933, #fdbb2d);
+        color: #fff;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(255, 153, 51, 0.4);
+    }
+
+    .nav-button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(255, 153, 51, 0.6);
+    }
+
+    footer {
+        background: linear-gradient(90deg, #1a2a6c, #b21f1f);
+        padding: 1.5rem;
+        text-align: center;
+        box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.3);
+        margin-top: 2rem;
+    }
+</style>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="header">
+                <h1>About Us</h1>
+            </div>
+            
+            <div class="about-content">
+                <h3>Ministry of Micro, Small & Medium Enterprises</h3>
+                <p>The Ministry of Micro, Small & Medium Enterprises (MSME) is the apex body for the formulation and administration of rules, regulations and laws relating to micro, small and medium enterprises in India.</p>
+                
+                <h3>Our Vision</h3>
+                <p>To promote growth and development of globally competitive Micro, Small and Medium Enterprises to enhance their contribution to economic prosperity and social well-being of the nation.</p>
+                
+                <h3>Our Mission</h3>
+                <ul style="list-style-type: none; padding-left: 0;">
+                    <li class="mission-item">Promote and develop competitive MSMEs</li>
+                    <li class="mission-item">Facilitate easy access to credit and capital markets</li>
+                    <li class="mission-item">Enhance competitiveness of MSMEs through technology upgradation</li>
+                    <li class="mission-item">Improve infrastructure facilities for MSMEs</li>
+                    <li class="mission-item">Strengthen skill development and entrepreneurship training</li>
+                    <li class="mission-item">Facilitate market access for MSMEs</li>
+                </ul>
+                
+                <h3>Organizational Structure</h3>
+                <p>The Ministry of MSME implements policies and programmes through its field organizations for the promotion of MSMEs. The following organizations are attached to the Ministry:</p>
+                
+                <div class="cards-container">
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <div class="card">Office of the Development Commissioner (MSME)</div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="card">Khadi and Village Industries Commission (KVIC)</div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="card">Coir Board</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <div class="card">National Small Industries Corporation (NSIC)</div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="card">National Institute for Micro, Small and Medium Enterprises (NI-MSME)</div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="card">Mahatma Gandhi Institute for Rural Industrialization (MGIRI)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="nav-buttons">
+                <button class="nav-button" onclick="window.location.href='/'">Back to Home</button>
+                <button class="nav-button" onclick="window.location.href='/contact-us'">Contact Us</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>© 2025 MSME Government Portal. All Rights Reserved.</p>
+</footer>
+
+<script>
+    // Hover effects are handled via CSS now
+</script>
+{% endblock %}

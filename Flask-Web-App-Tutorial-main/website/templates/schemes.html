@@ -1,0 +1,198 @@
+{% extends "base.html" %}
+
+{% block title %}Schemes - MSME Government Portal{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MSME Government Schemes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        /* Sticky Header */
+        header {
+            position: sticky;
+            top: 0;
+            background: linear-gradient(90deg, #1a2a6c, #ff9933);
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #ffcc00;
+            text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+        }
+
+        nav {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-weight: 400;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: #ffcc00;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #ffcc00;
+            transform: translateY(-2px);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            color: #ffcc00;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            text-shadow: 0 0 15px rgba(255, 204, 0, 0.3);
+        }
+
+        .scheme-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border-left: 4px solid #ffcc00;
+        }
+
+        .scheme-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(45deg, #ff9933, #fdbb2d);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 25px;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 153, 51, 0.4);
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 153, 51, 0.6);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(90deg, #1a2a6c, #b21f1f);
+            padding: 1.5rem;
+            text-align: center;
+            margin-top: 2rem;
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        footer p {
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">MSME_GUIDE</div>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#schemes">Schemes</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Government MSME Schemes</h1>
+        
+        <div class="scheme-card">
+            <h2>Credit Guarantee Scheme</h2>
+            <p>Provides collateral-free credit to micro and small enterprises with up to ₹2 crore coverage.</p>
+            <a href="#" class="btn">Learn More</a>
+        </div>
+
+        <div class="scheme-card">
+            <h2>PMEGP Scheme</h2>
+            <p>Prime Minister's Employment Generation Programme offers subsidies for new businesses.</p>
+            <a href="#" class="btn">Learn More</a>
+        </div>
+
+        <div class="scheme-card">
+            <h2>Technology Upgradation Scheme</h2>
+            <p>Supports MSMEs in adopting modern technology with financial assistance.</p>
+            <a href="#" class="btn">Learn More</a>
+        </div>
+    </div>
+    <!-- Navigation buttons at bottom -->
+    <div class="nav-buttons" style="margin-bottom: 30px;">
+        <button class="nav-button" onclick="window.location.href='/'">Back to Home</button>
+        <button class="nav-button" onclick="window.location.href='/contact-us'">Contact Us</button>
+          </div>
+
+    <footer>
+        <p>&copy; 2025 MSME Government Portal. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
+{% endblock %}

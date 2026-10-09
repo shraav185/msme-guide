@@ -1,0 +1,323 @@
+{% extends "base.html" %} {% block title %}msme_management{% endblock %} {% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MSME Executive Dashboard</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            /* Changed from solid #f5f7fa to gradient from light pink to lightest blue */
+            background: linear-gradient(to right, #ffdfed, #e6f0ff);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://inc42.com/wp-content/uploads/2019/06/india-msme-day-startups-tech-social.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: left;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        /* Dashboard Section */
+        .dashboard-info {
+            padding: 60px 0;
+            /* Changed to transparent background to show gradient */
+            background-color: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(5px);
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .dashboard-header {
+            margin-bottom: 40px;
+            text-align: left;
+        }
+
+        .dashboard-header h2 {
+            font-size: 28px;
+            color: #ed9818;
+            margin-bottom: 15px;
+        }
+
+        .dashboard-header p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .feature-column {
+            width: 48%;
+            margin-bottom: 40px;
+            display: flex;
+        }
+
+        .feature-text {
+            flex: 1;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            background-color: white;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+
+        .feature-icon {
+            width: 80px;
+            text-align: center;
+            margin-right: 20px;
+        }
+
+        .icon {
+            font-size: 36px;
+            color: #4a90e2;
+        }
+
+        .green-icon {
+            color: #5cb85c;
+        }
+
+        .blue-icon {
+            color: #337ab7;
+        }
+
+        .orange-icon {
+            color: #f0ad4e;
+        }
+
+        .yellow-icon {
+            color: #f0db4f;
+        }
+
+        /* Footer */
+        .footer {
+            /* Changed to transparent background to show gradient */
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 30px 0;
+            border-top: 1px solid #eee;
+            backdrop-filter: blur(5px);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-logo img {
+            height: 60px;
+            margin-right: 15px;
+        }
+
+        .footer-logo-text {
+            font-size: 14px;
+        }
+
+        .footer-logo-text h3 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .disclaimer {
+            max-width: 400px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .disclaimer h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        /* Font Awesome Icons Placeholder */
+        .fa {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            text-align: center;
+            line-height: 60px;
+            border-radius: 4px;
+        }
+
+        .fa-building {
+            background-color: #d4edda;
+            color: #5cb85c;
+        }
+
+        .fa-server {
+            background-color: #cce5ff;
+            color: #337ab7;
+        }
+
+        .fa-tasks {
+            background-color: #fff3cd;
+            color: #f0ad4e;
+        }
+
+        .fa-calendar {
+            background-color: #fff3cd;
+            color: #f0ad4e;
+        }
+
+        @media (max-width: 768px) {
+            .feature-column {
+                width: 100%;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-logo {
+                margin-bottom: 20px;
+            }
+
+            .disclaimer {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>MSME MANAGEMENT AND INFORMATION SYSTEM</h1>
+            <p>Promoting sustainable growth and inclusive development for India's Micro, Small, and Medium Enterprises</p>
+        </div>
+    </section>
+
+    <!-- Dashboard Information Section -->
+    <section class="dashboard-info">
+        <div class="container">
+            <div class="dashboard-header">
+                <h2>ABOUT MSME EXECUTIVE DASHBOARD</h2>
+                <p>A First-of-its-Kind Initiative to Enhance Governance through Concurrent Monitoring and Pendency Reduction</p>
+            </div>
+
+            <div class="dashboard-content">
+                <p>The Ministry of MSME has launched an innovative Executive Dashboard, integrated into the Intra Gov Portal developed by NIC. This initiative utilizes real-time monitoring to ensure timely disposal of matters, significantly improving administrative efficiency.</p>
+                <br>
+                <p>The dashboard integrates over seven critical APIs, facilitating data exchange and monitoring across government ministries and departments. These include CPGRAMS, LIMBS, RTI, PIB, eOffice, APMS, and 10% Gross Budgetary Support. New API deployments are also underway, including CHAMPIONS and PFMS.</p>
+                <br>
+                <p>This solution extends beyond the Ministry of MSME to all government departments. By streamlining workflows and fostering transparency, it exemplifies the potential of digital transformation in governance.</p>
+                <br>
+                <p>Aligned with the government's commitment to support MSMEs—vital to India's economy, —this approach sets a new benchmark for leveraging technology to achieve 'minimum government, maximum governance,' positioning India at the forefront of digital governance and MSME support.</p>
+            </div>
+
+            <div class="features">
+                <div class="feature-column">
+                    <div class="feature-icon">
+                        <i class="fa fa-building green-icon"></i>
+                    </div>
+                    <div class="feature-text">
+                        <h3>Secure Access</h3>
+                        <p>Of Government Application</p>
+                    </div>
+                </div>
+
+                <div class="feature-column">
+                    <div class="feature-icon">
+                        <i class="fa fa-server blue-icon"></i>
+                    </div>
+                    <div class="feature-text">
+                        <h3>Availability of</h3>
+                        <p>API Based Utilities</p>
+                    </div>
+                </div>
+
+                <div class="feature-column">
+                    <div class="feature-icon">
+                        <i class="fa fa-tasks orange-icon"></i>
+                    </div>
+                    <div class="feature-text">
+                        <h3>Executive</h3>
+                        <p>Dashboard</p>
+                    </div>
+                </div>
+
+                <div class="feature-column">
+                    <div class="feature-icon">
+                        <i class="fa fa-calendar yellow-icon"></i>
+                    </div>
+                    <div class="feature-text">
+                        <h3>Calendar, Task</h3>
+                        <p>Management</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTclY1KAEvZiU81eeC49Ygm1tg4K1eq0mSOEQ&s" alt="Government of India Emblem">
+                    <div class="footer-logo-text">
+                        <h3>Ministry of Micro, Small & Medium Enterprises</h3>
+                        <p>सूक्ष्म, लघु और मझगम उद्यम मंत्रालय</p>
+                    </div>
+                </div>
+
+                <div class="disclaimer">
+                    <h3>Disclaimer</h3>
+                    <p>Website Content Owned and Managed by Ministry of Micro, Small & Medium Enterprises, Government of India.</p>
+                    <p>Designed, Developed and Hosted by National Informatics Centre (NIC)</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+
+{% endblock %}

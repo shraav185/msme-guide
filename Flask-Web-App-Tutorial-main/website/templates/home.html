@@ -1,0 +1,363 @@
+{% extends "base.html" %} 
+{% block title %}Home{% endblock %} 
+
+{% block head %}
+{{ super() }}
+<style>
+    /* Remove the body background since it's already set in base.html */
+    body {
+        color: #333;
+    }
+    
+    .content-wrapper {
+        background-color: rgba(255, 255, 255, 0.95);
+        padding: 30px;
+        border-radius: 12px;
+        margin: 30px auto;
+        max-width: 1200px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .header {
+        background-color: #1e88e5;
+        color: white;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 25px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        gap: 20px; /* Space between logo and text/buttons */
+    }
+    
+    .header img.logo {
+        height: 60px; /* Adjust size as needed */
+        width: auto;
+    }
+    
+    .header h1 {
+        margin: 0;
+        font-size: 2.5rem;
+        font-weight: 700;
+    }
+    
+    .nav-buttons {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .nav-button {
+        background-color: #1565c0;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        margin: 5px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        width: 100%;
+    }
+    
+    .nav-button:hover {
+        background-color: #0d47a1;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    .cards-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-bottom: 30px;
+        gap: 20px;
+    }
+    
+    .card {
+        background-color: #e3f2fd;
+        border: none;
+        border-radius: 10px;
+        padding: 20px;
+        margin: 10px 0;
+        width: 30%;
+        text-align: center;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        font-weight: 600;
+        color: #0d47a1;
+    }
+    
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        background-color: #bbdefb;
+    }
+    
+    /* Featured Initiatives Section */
+    .container.mt-5 {
+        padding: 0;
+    }
+    
+    h2.text-center {
+        color: #1e88e5;
+        font-weight: 700;
+        margin-bottom: 30px;
+        position: relative;
+    }
+    
+    h2.text-center::after {
+        content: '';
+        width: 60px;
+        height: 4px;
+        background-color: #1e88e5;
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 2px;
+    }
+    
+    .card.h-100 {
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .card.h-100:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+    
+    .card-header {
+        font-weight: 600;
+        border-bottom: none;
+        padding: 15px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+    
+    .card-header.bg-primary {
+        background-color: #1e88e5 !important;
+    }
+    
+    .card-header.bg-success {
+        background-color: #66bb6a !important;
+    }
+    
+    .card-header.bg-info {
+        background-color: #29b6f6 !important;
+    }
+    
+    .card-body {
+        padding: 20px;
+        color: #333;
+    }
+    
+    .btn-outline-primary {
+        color: #1e88e5;
+        border-color: #1e88e5;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-outline-primary:hover {
+        background-color: #1e88e5;
+        color: white;
+        border-color: #1e88e5;
+    }
+    
+    .btn-outline-success {
+        color: #66bb6a;
+        border-color: #66bb6a;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-outline-success:hover {
+        background-color: #66bb6a;
+        color: white;
+        border-color: #66bb6a;
+    }
+    
+    .btn-outline-info {
+        color: #29b6f6;
+        border-color: #29b6f6;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-outline-info:hover {
+        background-color: #29b6f6;
+        color: white;
+        border-color: #29b6f6;
+    }
+    
+    /* Latest Updates Section */
+    .list-group-item {
+        border: none;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        background-color: #e3f2fd;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .list-group-item:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        background-color: #bbdefb;
+    }
+    
+    .list-group-item h5 {
+        color: #1e88e5;
+        font-weight: 600;
+    }
+    
+    .list-group-item p {
+        color: #333;
+    }
+    
+    .list-group-item small {
+        color: #666;
+    }
+    
+    @media (max-width: 768px) {
+        .card {
+            width: 100%;
+            margin: 10px 0;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .content-wrapper {
+            margin: 15px;
+            padding: 20px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="content-wrapper">
+    <!-- Header -->
+    <div class="header">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiLbX__Qmz4q5OpaaXMeH23zRT04K9IHpb6BLSigBBi89BxZ5YU5tQlRW4nv3lIoCbK4O5ZEHhiQnxtI7FQBql0x85IejkPKtjutcT1qajOYY_Ub1gJFYEJ7B3CQtgXQHCFg1LNgxk8JA/w640-h270/MSME.jpg" alt="MSME Logo" class="logo">
+        <div>
+            <h1>MSME_GUIDE</h1>
+            <div class="nav-buttons">
+                <button class="nav-button" onclick="window.location.href='/about-us'">About Us</button>
+                <button class="nav-button" onclick="window.location.href='/whats-msme'">What's New</button>
+                <button class="nav-button" onclick="window.location.href='/schemes'">Schemes</button>
+                <button class="nav-button" onclick="window.location.href='/vacancies'">Vacancies</button>
+                <button class="nav-button" onclick="window.location.href='/contact-us'">Contact Us</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- First Row of Cards -->
+    <div class="cards-container">
+        <div class="card" onclick="window.location.href='/msme-management'">
+            <div>MSME MANAGEMENT AND INFORMATION SYSTEM</div>
+        </div>
+        <div class="card" onclick="window.location.href='/events'">
+            <div>EVENTS</div>
+        </div>
+        <div class="card" onclick="window.location.href='/msme-sambhand'">
+            <div>MSME SAMBANDH</div>
+        </div>
+    </div>
+
+    <!-- Second Row of Cards -->
+    <div class="cards-container">
+        <div class="card" onclick="window.location.href='/msme-champion'">
+            <div>MSME CHAMPION Scheme</div>
+        </div>
+        <div class="card" onclick="window.location.href='/samadhaan'">
+            <div>SAMADHAAN</div>
+        </div>
+        <div class="card" onclick="window.location.href='/pmegp'">
+            <div>PMEGP e-Portal</div>
+        </div>
+    </div>
+
+    <!-- Third Row of Cards -->
+    <div class="cards-container">
+        <div class="card" onclick="window.location.href='/my-msme'">
+            <div>My MSME (Online Services)</div>
+        </div>
+        <div class="card" onclick="window.location.href='/udyam-registration'">
+            <div>Udyam Registration</div>
+        </div>
+        <div class="card" onclick="window.location.href='/performance-smartboard'">
+            <div>Performance Smartboard</div>
+        </div>
+    </div>
+
+    <!-- Featured Initiatives Section -->
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Featured Initiatives</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 border-primary">
+                    <div class="card-header bg-primary text-white">MSME Innovative Scheme</div>
+                    <div class="card-body">
+                        <p class="card-text">Supporting innovative ideas and technologies in the MSME sector through financial assistance and mentoring.</p>
+                        <a href="https://innovative.msme.gov.in/" class="btn btn-sm btn-outline-primary">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 border-success">
+                    <div class="card-header bg-success text-white">Digital MSME</div>
+                    <div class="card-body">
+                        <p class="card-text">Empowering MSMEs with digital tools and knowledge to enhance their global competitiveness.</p>
+                        <a href="https://www.iid.org.in/blogs/what-is-digital-msme-scheme-its-benefits" class="btn btn-sm btn-outline-success">Learn More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 border-info">
+                    <div class="card-header bg-info text-white">Women Entrepreneurship</div>
+                    <div class="card-body">
+                        <p class="card-text">Special initiatives to promote and support women entrepreneurs in the MSME sector.</p>
+                        <a href="https://msme.gov.in/women-entrepreneurs" class="btn btn-sm btn-outline-info">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Latest Updates Section -->
+    <div class="container mt-5 mb-5">
+        <h2 class="text-center mb-4">Latest Updates</h2>
+        <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">New Credit Guarantee Scheme Announced</h5>
+                    <small>3 days ago</small>
+                </div>
+                <p class="mb-1">Government announces enhanced credit guarantee scheme for MSMEs with additional benefits.</p>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">MSME Technology Upgradation Fund</h5>
+                    <small>1 week ago</small>
+                </div>
+                <p class="mb-1">Applications now open for technology upgradation subsidies for small and medium enterprises.</p>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">Upcoming Webinar: Export Opportunities for MSMEs</h5>
+                    <small>2 weeks ago</small>
+                </div>
+                <p class="mb-1">Register for the free webinar on exploring international markets for your MSME products.</p>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

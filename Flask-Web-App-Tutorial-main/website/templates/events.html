@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %}events{% endblock %}
+{% block content %}
+
+<style>
+    body {
+        background: linear-gradient(135deg, #ffb6c1, #add8e6, #e6f3ff); /* Light pink to lightest blue gradient */
+        min-height: 100vh; /* Ensures the gradient covers the full viewport height */
+        background-attachment: fixed; /* Keeps the gradient static while scrolling */
+    }
+    img {
+        display: block;
+        margin: 20px auto;
+        max-width: 1000px;
+        width: 100%;
+        border-radius: 10px; /* Optional: Adds a subtle rounded corner for a modern look */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Optional: Adds a shadow for depth */
+        transition: transform 0.3s ease; /* Optional: Smooth hover effect */
+    }
+    img:hover {
+        transform: scale(1.02); /* Optional: Slight zoom on hover */
+    }
+    p {
+        text-align: center;
+        font-family: 'Poppins', sans-serif; /* Optional: Modern font for consistency */
+        font-size: 18px;
+        color: #1a2a6c; /* Dark blue for contrast against the light background */
+    }
+    p a {
+        color: #ff69b4; /* Hot pink for links to stand out */
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.3s ease; /* Smooth color transition on hover */
+    }
+    p a:hover {
+        color: #87ceeb; /* Light blue on hover for a cohesive theme */
+        text-decoration: underline; /* Underline on hover for clarity */
+    }
+</style>
+
+<img src="https://static.meraevents.com/content/eventbanner/261418/oo17391302324zzGz.jpg">
+<p><a href="https://www.meraevents.com/event/msme-mahotsav" target="_blank">MSME Mahotsav</a></p>
+</br>
+</br>
+
+<img src="https://resources.aima.in/event-uploaded-file/jan2020/9th-msme-event.JPG">
+<p><a href="https://www.aima.in/events/11th-msme-convention-january-2022" target="_blank">AIMA MSME Convention</a></p>
+</br>
+</br>
+
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbaGw9YklSC22QdHsk2bbbjq3DrBWwQNTLeg&s">
+<p><a href="https://bombaychamber.com/event/msme-conclave-2024-empowering-msmes/" target="_blank">MSME Conclave 2024</a></p>
+</br>
+</br>
+
+<img src="https://indianchamberofcommerce.glueup.com/resources/public/images/fixed-width/1200/a7315689-f976-4b1a-bdc8-8e4c2fab0cfd.png">
+<p><a href="https://indianchamberofcommerce.glueup.com/event/icc-msme-mela-2025-127252/" target="_blank">ICC MSME Mela 2025</a></p>
+</br>
+</br>
+
+<img src="https://gcpit.org/wp-content/uploads/2024/05/WORLD-1130x650.jpg">
+<p><a href="https://gcpit.org/event/world-micro-small-medium-enterprises-day-2024/" target="_blank">World MSME Day 2024</a></p>
+</br>
+</br>
+
+<img src="https://msmescaleup.com/wp-content/uploads/elementor/thumbs/event-1-qfob9onkk4szuipyyaj717bn3legipws67dusso2kw.jpg">
+<p><a href="https://msmescaleup.com/msme-gurugram/" target="_blank">MSME Gurugram</a></p>
+</br>
+</br>
+
+{% endblock %}

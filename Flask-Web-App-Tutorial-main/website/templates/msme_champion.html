@@ -1,0 +1,319 @@
+{% extends "base.html" %}
+{% block title %}msme_champion{% endblock %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MSME Champions Portal</title>
+    <style>
+        /* Reset default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #ffb6c1, #add8e6, #e6f3ff); /* Light pink to lightest blue gradient */
+            color: #000000; /* Changed text to black */
+            min-height: 100vh;
+            background-attachment: fixed; /* Keeps gradient static */
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(to right, #fffefe, #ffe082); /* Light pink to light blue */
+            color: rgb(177, 6, 6);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Added shadow for depth */
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo img {
+            width: 50px;
+            border-radius: 50%; /* Optional: Rounded logo */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Optional: Shadow for logo */
+        }
+
+        .logo h1 {
+            font-size: 1.5rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); /* Subtle shadow for contrast */
+        }
+
+        .header-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .header-links a:hover {
+            color: #ffcc00; /* Gold hover retained for vibrancy */
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.8); /* Semi-transparent black for contrast */
+            padding: 0.5rem 2rem;
+            backdrop-filter: blur(5px); /* Optional: Glassmorphism effect */
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        nav ul li a {
+            color: rgb(4, 0, 0);
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #ffcc00; /* Gold hover */
+        }
+
+        /* Hero Section */
+        .hero {
+            background: rgba(255, 255, 255, 0.1); /* Glassmorphism effect */
+            text-align: center;
+            padding: 2rem;
+            backdrop-filter: blur(5px); /* Optional: Blur effect */
+            border-bottom: 2px solid rgba(255, 204, 0, 0.3); /* Subtle gold border */
+        }
+
+        .hero h2 {
+            color: #000000; /* Changed to black */
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #000000; /* Changed to black */
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        section {
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            color: #000000; /* Changed to black */
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #ffcc00; /* Gold underline retained */
+            display: inline-block;
+        }
+
+        /* Schemes Section */
+        .scheme-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .scheme-card {
+            background: #ffffff; /* Changed to solid white */
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease; /* Smooth hover effect */
+        }
+
+        .scheme-card:hover {
+            transform: translateY(-5px); /* Lift on hover */
+        }
+
+        .scheme-card h3 {
+            color: #000000; /* Changed to black */
+            margin-bottom: 0.5rem;
+        }
+
+        /* Grievance Form */
+        form {
+            background: #ffffff; /* Changed to solid white */
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        label {
+            font-weight: bold;
+            color: #000000; /* Changed to black */
+        }
+
+        input, textarea {
+            padding: 0.5rem;
+            border: 1px solid #000a0e; /* Light blue border */
+            border-radius: 4px;
+            font-size: 1rem;
+            background: #ffffff; /* White background for inputs */
+            color: #000000; /* Changed to black */
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, textarea:focus {
+            border-color: #ffcc00; /* Gold on focus */
+            outline: none;
+        }
+
+        button {
+            padding: 0.75rem;
+            background: linear-gradient(to right, #ff99cc, #add8e6); /* Pink to light blue */
+            color: #000000; /* Changed to black */
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: linear-gradient(to right, #add8e6, #ff99cc); /* Reverse gradient on hover */
+            transform: scale(1.05); /* Slight scale on hover */
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(to right, #ffb6c1, #87ceeb); /* Light pink to light blue */
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+        }
+
+        .footer-content p {
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.5rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 1rem 0;
+            }
+
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-top">
+            <div class="logo">
+                <img src="https://i.pinimg.com/736x/77/3d/86/773d86f8fb6f6d1611ae8e0bb1a8e118.jpg" alt="Government Logo">
+                <h1>MSME Champions Portal</h1>
+            </div>
+            <div class="header-links">
+                <a href="#">Login</a> | <a href="#">Register</a>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#schemes">Schemes</a></li>
+                <li><a href="#grievance">Grievance</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h2>Empowering MSMEs for a Self-Reliant India</h2>
+        <p>One-stop platform for support, innovation, and growth.</p>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+        <section id="schemes">
+            <h2>Our Schemes</h2>
+            <div class="scheme-grid">
+                <div class="scheme-card">
+                    <h3>MSME-Sustainable (ZED)</h3>
+                    <p>Promote zero defect, zero effect manufacturing.</p>
+                </div>
+                <div class="scheme-card">
+                    <h3>MSME-Competitive (Lean)</h3>
+                    <p>Enhance efficiency with lean practices.</p>
+                </div>
+                <div class="scheme-card">
+                    <h3>MSME-Innovative</h3>
+                    <p>Support innovation, design, and IPR.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="grievance">
+            <h2>File a Grievance</h2>
+            <form>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="issue">Grievance Details:</label>
+                <textarea id="issue" name="issue" rows="4" required></textarea>
+
+                <button type="submit">Upload</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>Ministry of Micro, Small & Medium Enterprises, Government of India</p>
+            <p>© 2025 MSME Champions Portal. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
+
+{% endblock %}

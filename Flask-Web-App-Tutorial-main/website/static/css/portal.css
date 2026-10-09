@@ -1,0 +1,192 @@
+:root {
+  --navy: #082d62;
+  --blue: #0b5cab;
+  --bright-blue: #1676ce;
+  --pale-blue: #edf5ff;
+  --line-blue: #c8dcf3;
+  --ink: #15375f;
+  --muted-blue: #537092;
+  --white: #ffffff;
+  --shadow: 0 12px 32px rgba(8, 45, 98, .09);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  min-height: 100vh;
+  color: var(--ink) !important;
+  background: var(--white) !important;
+  background-image: none !important;
+  font-family: "Segoe UI", "Noto Sans", Arial, sans-serif !important;
+  line-height: 1.65;
+}
+
+body * { background-image: none !important; }
+
+.government-strip {
+  background: var(--navy) !important;
+  color: var(--white) !important;
+  font-size: .78rem;
+  letter-spacing: .035em;
+}
+.government-strip-inner {
+  width: min(1280px, calc(100% - 40px));
+  min-height: 34px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.strip-divider { width: 1px; height: 14px; background: #fff !important; opacity: .6; }
+
+.portal-navbar {
+  position: relative;
+  z-index: 5;
+  min-height: 82px;
+  padding: 12px max(24px, calc((100vw - 1280px) / 2));
+  background: var(--white) !important;
+  border-bottom: 1px solid var(--line-blue);
+  box-shadow: 0 4px 18px rgba(8, 45, 98, .06);
+}
+.portal-brand { display: flex; align-items: center; gap: 12px; margin-right: 28px; color: var(--navy) !important; }
+.brand-mark {
+  width: 48px; height: 48px; display: grid; place-items: center;
+  border: 2px solid var(--blue); border-radius: 50%;
+  color: var(--blue); font-weight: 800; font-size: .88rem; letter-spacing: -.04em;
+}
+.brand-copy { display: grid; line-height: 1.15; }
+.brand-copy strong { font-size: 1.08rem; letter-spacing: .01em; }
+.brand-copy small { margin-top: 5px; color: var(--muted-blue); font-size: .7rem; }
+.portal-navbar .navbar-collapse { justify-content: flex-end; gap: 18px; }
+.portal-navbar .navbar-nav { align-items: center; gap: 2px; }
+.portal-navbar .nav-link {
+  padding: 10px 12px !important; border-radius: 7px;
+  color: var(--navy) !important; font-size: .88rem; font-weight: 650;
+  transition: color .18s ease, background-color .18s ease;
+}
+.portal-navbar .nav-link:hover, .portal-navbar .nav-link:focus { color: var(--blue) !important; background: var(--pale-blue) !important; }
+.portal-navbar .navbar-toggler { border-color: var(--line-blue); background: var(--blue) !important; }
+.register-btn, a.register-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 42px; padding: 9px 16px; border: 1px solid var(--blue) !important;
+  border-radius: 7px; background: var(--blue) !important; color: var(--white) !important;
+  font-size: .86rem; font-weight: 700; text-decoration: none !important;
+}
+.register-btn:hover, a.register-btn:hover { background: var(--navy) !important; border-color: var(--navy) !important; }
+
+.site-container { width: min(1280px, 100%); max-width: 1280px; padding: 28px 24px 64px; }
+body .site-container * { background-color: transparent !important; }
+.site-container > .alert { border: 1px solid var(--line-blue); border-radius: 10px; color: var(--navy) !important; background: var(--pale-blue) !important; }
+.site-container > .alert-danger, .site-container > .alert-success { color: var(--navy) !important; background: var(--pale-blue) !important; }
+.site-container > .alert .close { color: var(--navy) !important; opacity: .7; }
+.alert, .alert-danger, .alert-success { border: 1px solid var(--line-blue) !important; border-radius: 9px; color: var(--navy) !important; background: var(--pale-blue) !important; }
+
+h1, h2, h3, h4, h5, h6 { color: var(--navy) !important; font-family: inherit !important; font-weight: 750 !important; letter-spacing: -.018em; }
+p, li, label, small { color: inherit; }
+a { color: var(--blue); }
+a:hover { color: var(--navy); }
+
+body .site-container .header, body .site-container .hero, body .site-container .hero-section, body .site-container .hero-banner, body .site-container .page-header, body .site-container .banner, body .site-container .masthead, body .site-container .welcome-banner {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(28px, 5vw, 58px) !important;
+  border: 1px solid var(--line-blue) !important;
+  border-radius: 16px !important;
+  background: var(--navy) !important;
+  color: var(--white) !important;
+  box-shadow: var(--shadow) !important;
+}
+body .site-container .custom-header, body .site-container .feedback-header, body .site-container .help-header, body .site-container .contact-header {
+  background: var(--blue) !important;
+  color: var(--white) !important;
+}
+body .site-container .custom-header h1, body .site-container .custom-header h2, body .site-container .custom-header h3,
+body .site-container .feedback-header h1, body .site-container .feedback-header h2, body .site-container .feedback-header h3,
+body .site-container .help-header h1, body .site-container .help-header h2, body .site-container .help-header h3,
+body .site-container .contact-header h1, body .site-container .contact-header h2, body .site-container .contact-header h3 { color: var(--white) !important; }
+.header::after, .hero::after, .hero-section::after, .hero-banner::after, .page-header::after, .banner::after, .masthead::after, .welcome-banner::after {
+  content: ""; position: absolute; right: -54px; top: -100px;
+  width: 260px; height: 260px; border: 1px solid rgba(255,255,255,.2);
+  border-radius: 50%; pointer-events: none;
+}
+.header h1, .header h2, .hero h1, .hero h2, .hero-section h1, .hero-section h2, .hero-banner h1, .hero-banner h2, .page-header h1, .page-header h2, .banner h1, .banner h2, .masthead h1, .masthead h2, .welcome-banner h1, .welcome-banner h2 { color: var(--white) !important; }
+.header p, .hero p, .hero-section p, .hero-banner p, .page-header p, .banner p, .masthead p, .welcome-banner p { color: var(--white) !important; opacity: .9; }
+
+body .site-container .card, body .site-container .contact-block, body .site-container .content-card, body .site-container .scheme-card, body .site-container .event-card, body .site-container .info-card, body .site-container .service-card, body .site-container .feature-card, body .site-container .form-container, body .site-container .custom-card, body .site-container .panel, body .site-container .dashboard-card {
+  border: 1px solid var(--line-blue) !important;
+  border-radius: 12px !important;
+  background: var(--pale-blue) !important;
+  color: var(--ink) !important;
+  box-shadow: 0 8px 24px rgba(8, 45, 98, .07) !important;
+}
+.cards-container { gap: 18px !important; }
+.cards-container > .card {
+  min-height: 150px; justify-content: flex-start !important; align-items: flex-start !important;
+  padding: 24px !important; border-top: 4px solid var(--blue) !important;
+  background: var(--pale-blue) !important;
+  color: var(--navy) !important; text-align: left !important;
+  font-size: 1.02rem !important; font-weight: 700 !important;
+  cursor: pointer; transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+body .site-container .cards-container > .card:hover { transform: translateY(-4px); border-color: var(--line-blue) !important; background: #cfe3ff !important; box-shadow: var(--shadow) !important; }
+body .site-container .card-header, body .site-container .block-header, body .site-container .section-heading, body .site-container .table thead th {
+  color: var(--white) !important; background: var(--blue) !important; border-color: var(--blue) !important;
+}
+.card-header h1, .card-header h2, .card-header h3, .block-header h1, .block-header h2, .block-header h3 { color: var(--white) !important; }
+body .site-container .card-body, body .site-container .block-body, body .site-container .card-footer { color: var(--ink) !important; background: var(--pale-blue) !important; }
+.nav-buttons { gap: 9px !important; }
+body .site-container .nav-buttons { display: flex; flex-wrap: wrap; justify-content: flex-start; }
+body .site-container .nav-buttons .nav-button { width: auto !important; margin: 0 !important; }
+body .site-container .nav-button, body .site-container button, body .site-container .btn, body .site-container .submit-button, body .site-container input[type="submit"], body .site-container a.button {
+  border: 1px solid var(--blue) !important; border-radius: 7px !important;
+  background: var(--blue) !important; color: var(--white) !important;
+  font-weight: 700 !important; text-decoration: none !important;
+  transition: background-color .18s ease, transform .18s ease, box-shadow .18s ease;
+}
+.nav-button:hover, button:hover, .btn:hover, .submit-button:hover, input[type="submit"]:hover, a.button:hover {
+  background: var(--navy) !important; border-color: var(--navy) !important;
+  color: var(--white) !important; box-shadow: 0 6px 16px rgba(8,45,98,.17);
+}
+body .site-container .form-control, body .site-container input:not([type="checkbox"]):not([type="radio"]), body .site-container select, body .site-container textarea {
+  border: 1px solid var(--line-blue) !important; border-radius: 7px !important;
+  background: var(--white) !important; color: var(--navy) !important;
+}
+.form-control:focus, input:focus, select:focus, textarea:focus { border-color: var(--bright-blue) !important; box-shadow: 0 0 0 3px rgba(22,118,206,.14) !important; }
+input[type="checkbox"], input[type="radio"] { accent-color: var(--blue); }
+
+body .site-container section, body .site-container article, body .site-container .section, body .site-container .content-section, body .site-container .page-section, body .site-container .main-content, body .site-container .content-wrapper { background-color: var(--white) !important; background-image: none !important; }
+body .site-container .text-success, body .site-container .text-danger, body .site-container .text-warning, body .site-container .text-info { color: var(--blue) !important; }
+body .site-container .list-group-item, body .site-container .accordion, body .site-container .accordion-item, body .site-container .faq-item, body .site-container .tab-content, body .site-container .metric-card, body .site-container .stat-card, body .site-container .status-card, body .site-container .tile, body .site-container .panel-box { color: var(--ink) !important; background-color: var(--pale-blue) !important; border-color: var(--line-blue) !important; }
+.table, .table td, .table th { color: var(--ink) !important; background-color: var(--white) !important; border-color: var(--line-blue) !important; }
+.table thead th, .table thead { color: var(--white) !important; background: var(--blue) !important; }
+.badge, .status { display: inline-block; border: 1px solid var(--line-blue) !important; border-radius: 20px; padding: 4px 10px; background: var(--pale-blue) !important; color: var(--navy) !important; }
+hr { border-color: var(--line-blue) !important; }
+
+.portal-footer { border-top: 1px solid var(--line-blue); background: var(--navy) !important; color: var(--white) !important; }
+.portal-footer-inner {
+  width: min(1280px, calc(100% - 48px)); min-height: 76px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between; gap: 18px;
+  color: var(--white) !important; font-size: .84rem;
+}
+.portal-footer-inner span:first-child { font-weight: 750; letter-spacing: .03em; }
+.portal-footer-inner a { color: var(--white) !important; text-decoration: underline; text-underline-offset: 3px; }
+
+@media (max-width: 991.98px) {
+  .portal-navbar { padding: 10px 18px; }
+  .portal-navbar .navbar-collapse { align-items: stretch; padding: 12px 0 4px; }
+  .portal-navbar .navbar-nav { align-items: stretch; }
+  .portal-navbar .nav-link { padding: 9px 10px !important; }
+  .portal-navbar .register-btn { width: 100%; margin-top: 8px; }
+}
+@media (max-width: 640px) {
+  .government-strip-inner { width: calc(100% - 28px); min-height: 42px; gap: 8px; font-size: .68rem; }
+  .site-container { padding: 18px 14px 40px; }
+  .portal-brand { margin-right: 8px; }
+  .brand-mark { width: 42px; height: 42px; }
+  .brand-copy strong { font-size: .96rem; }
+  .brand-copy small { font-size: .64rem; }
+  .header, .hero, .hero-section, .hero-banner, .page-header, .banner, .masthead, .welcome-banner { padding: 28px 22px !important; }
+  .portal-footer-inner { width: calc(100% - 28px); padding: 18px 0; align-items: flex-start; flex-direction: column; gap: 5px; }
+}

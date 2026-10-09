@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<style>
+  .custom-card {
+    background-color: #fff;
+    border: none;
+    border-radius: 12px;
+  }
+  .custom-header {
+    background-color: #1e88e5;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
+  .custom-body {
+    background-color: #ffffff;
+  }
+  .custom-footer {
+    background-color: #1e88e5;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+  }
+  .page-background {
+    background-image: url('https://media.istockphoto.com/id/1297933144/vector/vector-illustration-of-indian-tricolor-flag-background.jpg?s=612x612&w=0&k=20&c=tCd-ZdLMNHw_KAMZTX9zStqEDdWzXlS6FYrvjrZIswk=');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    max-height: 150vh;
+  }
+  .custom-button {
+    background-color: #1e88e5;
+    border-color: #1e88e5;
+  }
+  .custom-button:hover {
+    background-color: #1e88e5;
+    border-color: #1e88e5;
+  }
+  .input-icon {
+    background-color: #1e88e5;
+    border-color: #1e88e5;
+    color: #fff;
+  }
+</style>
+<div class="page-background py-5 ">
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-5">
+        <div class="custom-card shadow-lg">
+          <div class="custom-header text-white text-center p-3">
+            <h3 class="my-2">Welcome Back</h3>
+          </div>
+          <div class="custom-body p-4">
+            <form method="POST">
+              <div class="form-group mb-3">
+                <label for="email" class="form-label fw-bold">Email Address</label>
+                <div class="input-group">
+                  <span class="input-group-text input-icon"><i class="fas fa-envelope"></i></span>
+                  <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" required/>
+                </div>
+              </div>
+              <div class="form-group mb-4">
+                <label for="password" class="form-label fw-bold">Password</label>
+                <div class="input-group">
+                  <span class="input-group-text input-icon"><i class="fas fa-lock"></i></span>
+                  <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required/>
+                </div>
+              </div>
+              <div class="d-grid mb-3">
+                <button type="submit" class="btn custom-button text-white btn-lg">Login</button>
+              </div>
+              <div class="text-center">
+                <a href="/forgot-password" class="text-decoration-none" style="color: #1e88e5;"> </a>
+              </div>
+            </form>
+          </div>
+          <div class="custom-footer text-center py-3">
+            <div style="color: #fff;"> <a href="/sign-up" class="text-decoration-none" style="color: #fff; font-weight: bold"> </a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

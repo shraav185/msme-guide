@@ -1,0 +1,285 @@
+{% extends "base.html" %}
+{% block title %}Contact Us{% endblock %}
+{% block content %}
+<style>
+  body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .page-background {
+    background-image: url('https://media.istockphoto.com/id/1297933144/vector/vector-illustration-of-indian-tricolor-flag-background.jpg?s=612x612&w=0&k=20&c=tCd-ZdLMNHw_KAMZTX9zStqEDdWzXlS6FYrvjrZIswk=');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    filter: brightness(0.85);
+  }
+  
+  .content-wrapper {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 0;
+  }
+
+  .section-title {
+    color: #000080;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+  }
+  
+  .section-title:after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 50px;
+    height: 3px;
+    background: #000080;
+    bottom: 0;
+    left: 0;
+  }
+  
+  .contact-block {
+    background-color: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    transition: transform 0.3s ease;
+  }
+  
+  .contact-block:hover {
+    transform: translateY(-5px);
+  }
+  
+  .block-header {
+    padding: 1.5rem;
+    color: white;
+    font-weight: 600;
+    text-align: center;
+  }
+  
+  .feedback-header {
+    background: linear-gradient(to right, #000080, #1a56db);
+  }
+  
+  .help-header {
+    background: linear-gradient(to right, #000080, #1a56db);
+  }
+  
+  .contact-header {
+    background: linear-gradient(to right, #000080, #1a56db);
+  }
+  
+  .block-body {
+    padding: 1.5rem;
+    background-color: #ffffff; /* Light blue background applied to all blocks */
+  }
+  
+  .icon-box {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .icon-box i {
+    margin-right: 10px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: white;
+  }
+  
+  .contact-icon {
+    background-color: #000080;
+  }
+  
+  .custom-button {
+    background-color: #000080;
+    border-color: #000080;
+    width: 100%;
+    padding: 10px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  .feedback-button {
+    background-color: #000080;
+    border-color: #000080;
+  }
+  
+  .feedback-button:hover {
+    background-color: #00005c;
+    border-color: #00005c;
+  }
+  
+  .help-button {
+    background-color: #000080;
+    border-color: #000080;
+  }
+  
+  .help-button:hover {
+    background-color: #00005c;
+    border-color: #00005c;
+  }
+  
+  .form-control:focus {
+    box-shadow: none;
+    border-color: #000080;
+  }
+  
+  .form-control {
+    border-radius: 8px;
+    padding: 12px;
+  }
+  
+  textarea.form-control {
+    min-height: 120px;
+  }
+  
+  .checkbox-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  
+  .checkbox-item input[type="checkbox"] {
+    margin-right: 8px;
+  }
+</style>
+
+<div class="page-background"></div>
+<div class="content-wrapper">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-12 text-center">
+        <h1 class="display-4 fw-bold" style="color: #000; font-weight: bold;">Get In Touch</h1>
+        <p class="lead fw-bold" style="color: #000;">We'd love to hear from you. Let us know how we can help.</p>
+      </div>
+    </div>
+    
+    <div class="row">
+      <!-- Feedback Block -->
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="contact-block h-100">
+          <div class="block-header feedback-header">
+            <h3 class="mb-0"><i class="fas fa-comment-dots me-2"></i>Share Feedback</h3>
+          </div>
+          <div class="block-body">
+            <form method="post" action="{{ url_for('auth.contact_us') }}">
+              <div class="mb-3">
+                <label for="feedbackName" class="form-label fw-bold">Name</label>
+                <input type="text" class="form-control" id="feedbackName" name="name" placeholder="Your name" required>
+              </div>
+              <div class="mb-3">
+                <label for="feedbackEmail" class="form-label fw-bold">Email</label>
+                <input type="email" class="form-control" id="feedbackEmail" name="email" placeholder="Your email" required>
+              </div>
+              <div class="mb-3">
+                <label for="feedbackMessage" class="form-label fw-bold">Your Feedback</label>
+                <textarea class="form-control" id="feedbackMessage" name="message" placeholder="Share your thoughts with us..." required></textarea>
+              </div>
+              <div class="d-grid">
+                <button type="submit" class="btn feedback-button text-white">Submit Feedback</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Need Help Block -->
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="contact-block h-100">
+          <div class="block-header help-header">
+            <h3 class="mb-0">Need Help?</h3>
+          </div>
+          <div class="block-body">
+            <p class="mb-4">Having trouble or need assistance? Our support team is ready to help you with any questions.</p>
+            
+            <div class="mb-3">
+              <h5 class="fw-bold">Frequently Asked Questions</h5>
+              <!-- Changed to checkboxes -->
+              <div class="checkbox-item">
+                <input type="checkbox" id="faq1">
+                <label for="faq1" class="text-decoration-none text-dark">How do I reset my password?</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="faq2">
+                <label for="faq2" class="text-decoration-none text-dark">Shipping & delivery information</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="faq3">
+                <label for="faq3" class="text-decoration-none text-dark">Return & refund policy</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="faq4">
+                <label for="faq4" class="text-decoration-none text-dark">Payment methods</label>
+              </div>
+            </div>
+            
+            <div class="d-grid">
+              <a class="btn help-button text-white" href="mailto:msme.guide.support@msme.in?subject=MSME%20Guide%20support">Email support</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Contact Us Block -->
+      <div class="col-lg-4 col-md-12 mb-4">
+        <div class="contact-block h-100">
+          <div class="block-header contact-header">
+            <h3 class="mb-0">Contact Us</h3>
+          </div>
+          <div class="block-body">
+            <!-- <div class="icon-box">
+              <i class="fas fa-envelope contact-icon"></i>
+              <div>
+                <h5 class="fw-bold mb-1">Email</h5>
+                <p class="mb-0">support@yourcompany.com</p>
+              </div>
+            </div> -->
+            
+            <div class="icon-box">
+              <i class="fab fa-google contact-icon"></i>
+              <div>
+                <h5 class="fw-bold mb-1">Email</h5>
+                <p class="mb-0">msme.guide.support@msme.in</p>
+              </div>
+            </div>
+            
+            <div class="icon-box">
+              <i class="fas fa-phone-alt contact-icon"></i>
+              <div>
+                <h5 class="fw-bold mb-1">Phone</h5>
+                <p class="mb-0">+91 9876543210</p>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row mt-4">
+      <div class="col-12 text-center">
+        <p class="text-white">© 2025 MSME_Guide. All rights reserved.</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

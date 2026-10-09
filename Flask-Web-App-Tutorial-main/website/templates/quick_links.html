@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}Quick Links - MSME Government Portal{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-purple text-white" style="background-color: #4B0082;">
+                    <h3>Quick Links</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card mb-4">
+                                <div class="card-header bg-primary text-white">
+                                    MSME Services
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"><a href="{{ url_for('auth.udyam_registration') }}">Udyam Registration</a></li>
+                                    <li class="list-group-item"><a href="{{ url_for('auth.msme_champion') }}">MSME Champion Scheme</a></li>
+                                    <li class="list-group-item"><a href="{{ url_for('auth.samadhaan') }}">SAMADHAAN - MSME Delayed Payment Monitoring System</a></li>
+                                    <li class="list-group-item"><a href="{{ url_for('auth.msme_sambandh') }}">MSME SAMBANDH - Public Procurement Portal</a></li>
+                                    <li class="list-group-item"><a href="{{ url_for('auth.my_msme') }}">My MSME (Online Services)</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card mb-4">
+                                <div class="card-header bg-success text-white">
+                                    Related Organizations
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"><a href="https://msme.gov.in/" target="_blank">Ministry of MSME</a></li>
+                                    <li class="list-group-item"><a href="https://www.nsic.co.in/" target="_blank">National Small Industries Corporation (NSIC)</a></li>
+                                    <li class="list-group-item"><a href="https://www.kvic.org.in/" target="_blank">Khadi and Village Industries Commission (KVIC)</a></li>
+                                    <li class="list-group-item"><a href="https://coirboard.gov.in/" target="_blank">Coir Board</a></li>
+                                    <li class="list-group-item"><a href="https://www.nimsme.org/" target="_blank">National Institute for MSME (ni-msme)</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card mb-4">
+                                <div class="card-header bg-info text-white">
+                                    Knowledge Resources
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"><a href="#">MSME Policy Guidelines</a></li>
+                                    <li class="list-group-item"><a href="#">Acts & Rules</a></li>
+                                    <li class="list-group-item"><a href="#">Annual Reports</a></li>
+                                    <li class="list-group-item"><a href="#">Publications</a></li>
+                                    <li class="list-group-item"><a href="#">Success Stories</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card mb-4">
+                                <div class="card-header bg-warning text-dark">
+                                    Other Government Portals
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"><a href="https://www.india.gov.in/" target="_blank">National Portal of India</a></li>
+                                    <li class="list-group-item"><a href="https://www.mygov.in/" target="_blank">MyGov</a></li>
+                                    <li class="list-group-item"><a href="https://www.makeinindia.com/" target="_blank">Make in India</a></li>
+                                    <li class="list-group-item"><a href="https://www.startupindia.gov.in/" target="_blank">Startup India</a></li>
+                                    <li class="list-group-item"><a href="https://digitalindia.gov.in/" target="_blank">Digital India</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

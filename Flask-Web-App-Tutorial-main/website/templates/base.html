@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    crossorigin="anonymous" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/portal.css') }}" />
+  <title>{% block title %}MSME Government Portal{% endblock %}</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5; /* Neutral light gray background for pages like Home */
+      min-height: 100vh;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    .header {
+      background-color: #1e88e5; /* Blue header to match Login/Sign Up/Home */
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 20px;
+      margin-bottom: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+
+    .nav-buttons {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+      gap: 10px; /* Space between buttons */
+      flex-wrap: wrap;
+    }
+
+    .nav-button {
+      background-color: #1565c0; /* Slightly darker blue for buttons */
+      color: #ffffff;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-weight: 600;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-button:hover {
+      background-color: #0d47a1; /* Even darker blue on hover */
+      transform: translateY(-2px); /* Slight lift effect */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow on hover */
+    }
+
+    .register-btn {
+      background-color: #1e88e5; /* Blue to match the theme */
+      color: #ffffff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .register-btn:hover {
+      background-color: #1565c0; /* Darker blue on hover */
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .cards-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+      gap: 20px; /* Space between cards */
+    }
+
+    .card {
+      background-color: #e3f2fd; /* Light blue to match the Home page */
+      color: #0d47a1; /* Darker blue text for contrast */
+      width: 300px;
+      height: 150px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 18px;
+      padding: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    }
+
+    .card:hover {
+      background-color: #bbdefb; /* Slightly darker blue on hover */
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .msme-content {
+      padding: 20px;
+    }
+
+    /* Navbar styling to match the theme */
+    .navbar-dark {
+      background-color: #0d47a1; /* Darker blue for the navbar */
+    }
+
+    .navbar-dark .navbar-collapse {
+      display: flex;
+      justify-content: space-between; /* Push left and right elements apart */
+      align-items: center;
+    }
+
+    .navbar-dark .navbar-nav {
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar-dark .navbar-nav .nav-link {
+      color: #ffffff;
+      font-weight: 500;
+      padding: 10px 15px;
+      transition: color 0.3s ease;
+    }
+
+    .navbar-dark .navbar-nav .nav-link:hover {
+      color: #e3f2fd; /* Light blue on hover */
+    }
+
+    /* Flash messages styling */
+    .alert {
+      margin: 20px 0;
+      border-radius: 8px;
+      font-weight: 500;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .alert-danger {
+      background-color: #ef5350; /* Red for error messages */
+      color: white;
+    }
+
+    .alert-success {
+      background-color: #66bb6a; /* Green for success messages */
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      .cards-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .card {
+        width: 90%;
+      }
+
+      .nav-buttons {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .nav-button {
+        margin-bottom: 10px;
+      }
+
+      .navbar-dark .navbar-collapse {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .register-btn {
+        margin: 10px 0;
+        width: fit-content;
+        align-self: flex-start;
+      }
+
+      .header {
+        margin-top: 10px;
+        padding: 15px;
+      }
+
+      .header h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="government-strip">
+    <div class="government-strip-inner"><span>Government of India</span><span class="strip-divider" aria-hidden="true"></span><span>Ministry of Micro, Small &amp; Medium Enterprises</span></div>
+  </div>
+  <nav class="navbar navbar-expand-lg navbar-dark portal-navbar" aria-label="Main navigation">
+    <a class="navbar-brand portal-brand" href="{{ url_for('views.home') }}">
+      <span class="brand-mark" aria-hidden="true">MS</span>
+      <span class="brand-copy"><strong>MSME Guide</strong><small>Enterprise support portal</small></span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" id="home" href="{{ url_for('views.home') }}">Home</a>
+        <a class="nav-item nav-link" href="{{ url_for('auth.whats_msme') }}">About MSMEs</a>
+        <a class="nav-item nav-link" href="{{ url_for('auth.schemes') }}">Schemes</a>
+        <a class="nav-item nav-link" href="{{ url_for('auth.udyam_registration') }}">Udyam</a>
+        <a class="nav-item nav-link" href="{{ url_for('auth.events') }}">Updates</a>
+        <a class="nav-item nav-link" href="{{ url_for('auth.contact_us') }}">Contact</a>
+        {% if user.is_authenticated %}
+          <a class="nav-item nav-link" id="logout" href="{{ url_for('auth.logout') }}">Logout</a>
+        {% else %}
+          <a class="nav-item nav-link" id="login" href="{{ url_for('auth.login') }}">Login</a>
+          <a class="nav-item nav-link" id="signUp" href="{{ url_for('auth.sign_up') }}">Create account</a>
+        {% endif %}
+      </div>
+      {% if user.is_authenticated %}
+        <a class="register-btn" href="{{ url_for('auth.register_btn') }}">Register a business</a>
+      {% endif %}
+    </div>
+  </nav>
+
+  <!-- Flash Messages -->
+  {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %}
+    {% for category, message in messages %}
+      {% if category == 'error' %}
+        <div class="alert alert-danger alter-dismissable fade show" role="alert">
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+      {% else %}
+        <div class="alert alert-success alter-dismissable fade show" role="alert">
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+  {% endwith %}
+
+  <!-- Main Content Container -->
+  <div class="container site-container">
+    {% block content %}
+      <!-- Default Home Content -->
+      <!-- Header -->
+      <div class="header">
+        <h1>MSME Government Portal</h1>
+        <div class="nav-buttons">
+          <button class="nav-button" onclick="window.location.href='/about-us'">
+            About Us
+          </button>
+          <button class="nav-button" onclick="window.location.href='/whats-msme'">
+            What's New
+          </button>
+          <button class="nav-button" onclick="window.location.href='/schemes'">
+            Schemes
+          </button>
+          <button class="nav-button" onclick="window.location.href='/vacancies'">
+            Vacancies
+          </button>
+          <button class="nav-button" onclick="window.location.href='/contact-us'">
+            Contact Us
+          </button>
+        </div>
+      </div>
+
+      <!-- Cards -->
+      <div class="cards-container">
+        <div class="card">
+          <div>MSME MANAGEMENT AND INFORMATION SYSTEM</div>
+        </div>
+        <div class="card">
+          <div>EVENTS</div>
+        </div>
+        <div class="card">
+          <div>MSME SAMBANDH</div>
+        </div>
+      </div>
+
+      <div class="cards-container">
+        <div class="card">
+          <div>MSME CHAMPION Scheme</div>
+        </div>
+        <div class="card">
+          <div>SAMADHAAN</div>
+        </div>
+        <div class="card">
+          <div>PMEGP e-Portal</div>
+        </div>
+      </div>
+
+      <div class="cards-container">
+        <div class="card">
+          <div>My MSME (Online Services)</div>
+        </div>
+        <div class="card">
+          <div>Udyam Registration</div>
+        </div>
+        <div class="card">
+          <div>Performance Smartboard</div>
+        </div>
+      </div>
+    {% endblock %}
+  </div>
+
+  <footer class="portal-footer">
+    <div class="portal-footer-inner"><span>MSME Guide</span><span>Information and services for India's micro, small and medium enterprises</span><a href="{{ url_for('auth.contact_us') }}">Contact support</a></div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
